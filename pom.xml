@@ -19,7 +19,7 @@
 	<description>Pet Clinic Implementation</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 	</properties>
 
 	<build>
@@ -33,10 +33,9 @@
 				<artifactId>maven-release-plugin</artifactId>
 				<configuration>
 					<goals>
-						<goal>install</goal>
-						<autoVersionSubmodules>true</autoVersionSubmodules>
-						<generateBackupPoms>false</generateBackupPoms>
+						install
 					</goals>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
 				</configuration>
 			</plugin>
 		</plugins>
