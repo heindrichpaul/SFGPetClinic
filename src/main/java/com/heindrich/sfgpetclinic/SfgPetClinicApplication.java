@@ -1,13 +1,13 @@
-package com.heindrich.afgpetclinic;
+package com.heindrich.sfgpetclinic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AfgPetClinicApplication {
+public class SfgPetClinicApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AfgPetClinicApplication.class, args);
+		SpringApplication.run(SfgPetClinicApplication.class, args);
 	}
 
 }
