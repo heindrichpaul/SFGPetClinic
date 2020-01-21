@@ -34,6 +34,8 @@
 				<configuration>
 					<goals>
 						<goal>install</goal>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+						<generateBackupPoms>false</generateBackupPoms>
 					</goals>
 				</configuration>
 			</plugin>
