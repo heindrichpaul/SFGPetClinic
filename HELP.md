@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.heindrich.afg-petclinic' is invalid and this project uses 'com.heindrich.sfgpetclinic' instead.
+* The original package name 'com.heindrich.afg-petclinic' is invalid and this project uses 'com.heindrich.sfgpetclinic.sfgpetclinic' instead.
 
 # Getting Started
 
