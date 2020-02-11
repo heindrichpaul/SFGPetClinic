@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * Created by heindrichpaul on 11/02/2020
  */
-@RequestMapping("/vets")
+@RequestMapping("/owners")
 @Controller
-public class VetController {
+public class OwnerController {
 
     @RequestMapping({"", "/", "/index", "/index.html"})
     public String index() {
-        return "vets/index";
+        return "owners/index";
     }
 }
