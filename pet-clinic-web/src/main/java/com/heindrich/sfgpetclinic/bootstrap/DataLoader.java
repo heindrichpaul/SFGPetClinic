@@ -1,13 +1,7 @@
 package com.heindrich.sfgpetclinic.bootstrap;
 
-import com.heindrich.sfgpetclinic.model.Owner;
-import com.heindrich.sfgpetclinic.model.Pet;
-import com.heindrich.sfgpetclinic.model.PetType;
-import com.heindrich.sfgpetclinic.model.Vet;
-import com.heindrich.sfgpetclinic.services.OwnerService;
-import com.heindrich.sfgpetclinic.services.PetService;
-import com.heindrich.sfgpetclinic.services.PetTypeService;
-import com.heindrich.sfgpetclinic.services.VetService;
+import com.heindrich.sfgpetclinic.model.*;
+import com.heindrich.sfgpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -23,17 +17,36 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final PetService petService;
+    private final SpecialtyService specialtyService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, PetService petService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, PetService petService, SpecialtyService specialtyService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.petService = petService;
+        this.specialtyService = specialtyService;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        int count = petTypeService.findAll().size();
+        if (count == 0) {
+            insertData();
+        }
+        CheckLoadedCount();
 
+    }
+
+    private void CheckLoadedCount() {
+        System.out.println("=================================");
+        System.out.println("Amount of PetTypes loaded: " + petTypeService.findAll().size());
+        System.out.println("Amount of Pets loaded: " + petService.findAll().size());
+        System.out.println("Amount of Owners loaded: " + ownerService.findAll().size());
+        System.out.println("Amount of Specialties loaded: " + specialtyService.findAll().size());
+        System.out.println("Amount of Vets loaded: " + vetService.findAll().size());
+    }
+
+    private void insertData() {
         PetType dog = new PetType();
         dog.setName("Dog");
         PetType savedDogPetType = petTypeService.save(dog);
@@ -80,15 +93,27 @@ public class DataLoader implements CommandLineRunner {
 
         System.out.println("Loaded Owners....");
 
+        Speciality radiologySpeciality = new Speciality();
+        radiologySpeciality.setDescription("Radiology");
+
+        Speciality surgerySpeciality = new Speciality();
+        surgerySpeciality.setDescription("Surgery");
+
+        Speciality dentistrySpeciality = new Speciality();
+        dentistrySpeciality.setDescription("Dentistry");
+
         Vet vet1 = new Vet();
         vet1.setFirstName("Sam");
         vet1.setLastName("Axe");
+        vet1.getSpecialities().add(radiologySpeciality);
 
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
         vet2.setFirstName("Jessie");
         vet2.setLastName("Porter");
+        vet2.getSpecialities().add(surgerySpeciality);
+        vet2.getSpecialities().add(dentistrySpeciality);
 
         vetService.save(vet2);
 
