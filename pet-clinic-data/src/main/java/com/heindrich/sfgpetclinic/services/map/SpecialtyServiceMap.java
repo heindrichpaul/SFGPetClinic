@@ -19,13 +19,13 @@ public class SpecialtyServiceMap extends AbstractMapService<Speciality, Long> im
     }
 
     @Override
-    public void delete(Speciality object) {
-        super.delete(object);
+    public void delete(Speciality speciality) {
+        super.delete(speciality);
     }
 
     @Override
-    public Speciality save(Speciality owner) {
-        return super.save(owner);
+    public Speciality save(Speciality speciality) {
+        return super.save(speciality);
     }
 
     @Override
