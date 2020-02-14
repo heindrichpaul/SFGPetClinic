@@ -1,10 +1,17 @@
 package com.heindrich.sfgpetclinic.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "vets")
 public class Vet extends Person {
 
@@ -15,11 +22,8 @@ public class Vet extends Person {
     )
     private Set<Speciality> specialities = new HashSet<>();
 
-    public Set<Speciality> getSpecialities() {
-        return specialities;
-    }
-
-    public void setSpecialities(Set<Speciality> specialities) {
-        this.specialities = specialities;
+    @Builder
+    public Vet(Long id, String firstName, String lastName) {
+        super(id, firstName, lastName);
     }
 }
