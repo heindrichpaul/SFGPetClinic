@@ -9,9 +9,9 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class OwnerServiceMapTest {
-    OwnerServiceMap ownerServiceMap;
-    Long OWNER_ID = 1L;
-    String LAST_NAME = "Doe";
+    private final Long OWNER_ID = 1L;
+    private final String LAST_NAME = "Doe";
+    private OwnerServiceMap ownerServiceMap;
 
 
     @BeforeEach
@@ -35,12 +35,9 @@ class OwnerServiceMapTest {
 
     @Test
     void delete() {
-        Long id = 2L;
-        //If you use the object returned by the save test you aren't retrieving the object from the map.
-        ownerServiceMap.save(Owner.builder().id(id).build());
         ownerServiceMap.deleteById(OWNER_ID);
         Set<Owner> owners = ownerServiceMap.findAll();
-        assertEquals(1, owners.size());
+        assertEquals(0, owners.size());
     }
 
     @Test
