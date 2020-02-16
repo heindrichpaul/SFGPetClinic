@@ -1,5 +1,7 @@
 package com.heindrich.sfgpetclinic.services.map;
 
+import com.heindrich.sfgpetclinic.model.Owner;
+import com.heindrich.sfgpetclinic.model.Pet;
 import com.heindrich.sfgpetclinic.model.Visit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +18,7 @@ class VisitServiceMapTest {
     @BeforeEach
     void setUp() {
         visitServiceMap = new VisitServiceMap();
-        visitServiceMap.save(Visit.builder().id(VISIT_ID).build());
+        visitServiceMap.save(Visit.builder().id(VISIT_ID).pet(Pet.builder().id(1L).owner(Owner.builder().id(1L).build()).build()).build());
     }
 
     @Test
@@ -43,7 +45,7 @@ class VisitServiceMapTest {
     void save() {
         Long id = 2L;
         //If you use the object returned by the save test you aren't retrieving the object from the map.
-        visitServiceMap.save(Visit.builder().id(id).build());
+        visitServiceMap.save(Visit.builder().id(id).pet(Pet.builder().id(id).owner(Owner.builder().id(id).build()).build()).build());
         Visit visit = visitServiceMap.findById(id);
         assertEquals(id, visit.getId());
     }
