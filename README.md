@@ -1,1 +1,1 @@
-# SFGPetClinic
+# Pet Clinic [![CircleCI](https://circleci.com/gh/heindrichpaul/SFGPetClinic.svg?style=svg)](https://circleci.com/gh/heindrichpaul/SFGPetClinic)
