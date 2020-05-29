@@ -7,22 +7,28 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
 @Service
 @Profile("springdatajpa")
-public class OwnerServiceJpa implements OwnerService {
+public class OwnerJPAService implements OwnerService {
     private final OwnerRepository ownerRepository;
 
 
-    public OwnerServiceJpa(OwnerRepository ownerRepository) {
+    public OwnerJPAService(OwnerRepository ownerRepository) {
         this.ownerRepository = ownerRepository;
     }
 
     @Override
     public Owner findByLastName(String lastName) {
         return ownerRepository.findByLastName(lastName);
+    }
+
+    @Override
+    public List<Owner> findAllByLastNameLike(String lastName) {
+        return this.ownerRepository.findAllByLastNameLike(lastName);
     }
 
     @Override

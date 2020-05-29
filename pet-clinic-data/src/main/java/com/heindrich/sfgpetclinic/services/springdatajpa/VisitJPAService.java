@@ -11,10 +11,10 @@ import java.util.Set;
 
 @Service
 @Profile("springdatajpa")
-public class VisitServiceJpa implements VisitService {
+public class VisitJPAService implements VisitService {
     private final VisitRepository visitRepository;
 
-    public VisitServiceJpa(VisitRepository visitRepository) {
+    public VisitJPAService(VisitRepository visitRepository) {
         this.visitRepository = visitRepository;
     }
 

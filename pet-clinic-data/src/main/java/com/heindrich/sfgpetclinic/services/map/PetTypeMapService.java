@@ -1,20 +1,18 @@
 package com.heindrich.sfgpetclinic.services.map;
 
-import com.heindrich.sfgpetclinic.model.Pet;
-import com.heindrich.sfgpetclinic.services.PetService;
+import com.heindrich.sfgpetclinic.model.PetType;
+import com.heindrich.sfgpetclinic.services.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-/**
- * Created by heindrichpaul on 11/02/2020
- */
 @Service
 @Profile({"default", "map"})
-public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
+public class PetTypeMapService extends AbstractMapService<PetType, Long> implements PetTypeService {
+
     @Override
-    public Set<Pet> findAll() {
+    public Set<PetType> findAll() {
         return super.findAll();
     }
 
@@ -24,17 +22,18 @@ public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetS
     }
 
     @Override
-    public void delete(Pet pet) {
-        super.delete(pet);
+    public void delete(PetType petType) {
+        super.delete(petType);
     }
 
     @Override
-    public Pet save(Pet pet) {
-        return super.save(pet);
+    public PetType save(PetType petType) {
+        super.save(petType);
+        return petType;
     }
 
     @Override
-    public Pet findById(Long id) {
+    public PetType findById(Long id) {
         return super.findById(id);
     }
 }
