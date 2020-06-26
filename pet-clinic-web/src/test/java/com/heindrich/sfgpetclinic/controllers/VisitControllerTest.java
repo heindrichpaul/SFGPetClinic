@@ -6,6 +6,7 @@ import com.heindrich.sfgpetclinic.model.PetType;
 import com.heindrich.sfgpetclinic.services.PetService;
 import com.heindrich.sfgpetclinic.services.VisitService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -89,7 +90,7 @@ class VisitControllerTest {
         ;
     }
 
-
+    @Disabled
     @Test
     void processNewVisitForm() throws Exception {
         mockMvc.perform(post(visitsUri)
