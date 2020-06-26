@@ -20,6 +20,9 @@ import java.util.List;
 public class OwnerController {
     private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
     public static final String VIEW_REDIRECT_OWNERS = "redirect:/owners/";
+    public static final String VIEW_OWNERS_FIND = "owners/findOwners";
+    public static final String VIEW_OWNERS_LIST = "owners/ownersList";
+    public static final String VIEW_OWNERS_DETAIL = "owners/ownerDetails";
 
     private final OwnerService ownerService;
 
@@ -35,7 +38,7 @@ public class OwnerController {
     @GetMapping("/find")
     public String findOwners(Model model) {
         model.addAttribute("owner", Owner.builder().build());
-        return "owners/findOwners";
+        return VIEW_OWNERS_FIND;
     }
 
     @GetMapping
@@ -51,7 +54,7 @@ public class OwnerController {
         if (results.isEmpty()) {
             // no owners found
             result.rejectValue("lastName", "notFound", "not found");
-            return "owners/findOwners";
+            return VIEW_OWNERS_FIND;
         } else if (results.size() == 1) {
             // 1 owner found
             owner = results.get(0);
@@ -59,13 +62,13 @@ public class OwnerController {
         } else {
             // multiple owners found
             model.addAttribute("selections", results);
-            return "owners/ownersList";
+            return VIEW_OWNERS_LIST;
         }
     }
 
     @GetMapping("/{ownerId}")
     public ModelAndView showOwner(@PathVariable Long ownerId) {
-        ModelAndView mav = new ModelAndView("owners/ownerDetails");
+        ModelAndView mav = new ModelAndView(VIEW_OWNERS_DETAIL);
         mav.addObject(ownerService.findById(ownerId));
         return mav;
     }

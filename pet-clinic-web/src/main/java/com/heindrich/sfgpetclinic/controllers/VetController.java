@@ -12,14 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class VetController {
     private final VetService vetService;
 
+    public static final String VIEW_VET_INDEX = "vets/index";
+
     public VetController(VetService vetService) {
         this.vetService = vetService;
     }
 
     @RequestMapping({"/vets", "/vets/index", "/vets/index.html", "/vets.html"})
-    public String listVets(Model model){
+    public String listVets(Model model) {
 
         model.addAttribute("vets", vetService.findAll());
-        return "vets/index";
+        return VIEW_VET_INDEX;
     }
 }

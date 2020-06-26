@@ -1,24 +1,26 @@
 package com.heindrich.sfgpetclinic.controllers;
 
 import com.heindrich.sfgpetclinic.model.Owner;
+import com.heindrich.sfgpetclinic.model.Pet;
 import com.heindrich.sfgpetclinic.model.PetType;
 import com.heindrich.sfgpetclinic.services.OwnerService;
 import com.heindrich.sfgpetclinic.services.PetService;
 import com.heindrich.sfgpetclinic.services.PetTypeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 @Controller
 @RequestMapping("/owners/{ownerId}")
 public class PetController {
 
-    private static final String VIEW_WITH_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
+    private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
     private final PetTypeService petTypeService;
     private final PetService petService;
     private final OwnerService ownerService;
@@ -36,11 +38,55 @@ public class PetController {
 
     @ModelAttribute("owner")
     public Owner findOwner(@PathVariable("ownerId") int ownerId) {
-        return this.ownerService.findById(Long.valueOf(ownerId));
+        return this.ownerService.findById((long) ownerId);
     }
 
     @InitBinder("owner")
     public void initOwnerBinder(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
+    }
+
+    @GetMapping("/pets/new")
+    public String initCreationForm(Owner owner, Model model) {
+        Pet pet = new Pet();
+        owner.addPet(pet);
+        model.addAttribute("pet", pet);
+        return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+    }
+
+    @PostMapping("/pets/new")
+    public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result, Model model) {
+        if (StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(), true) != null) {
+            result.rejectValue("name", "duplicate", "already exists");
+        }
+        owner.addPet(pet);
+        if (result.hasErrors()) {
+            model.addAttribute("pet", pet);
+            return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+        } else {
+            petService.save(pet);
+            return "redirect:/owners/" + owner.getId();
+        }
+    }
+
+
+    @GetMapping("/pets/{petId}/edit")
+    public String initUpdateForm(@PathVariable("petId") int petId, Model model) {
+        Pet pet = petService.findById((long) petId);
+        model.addAttribute("pet", pet);
+        return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+    }
+
+    @PostMapping("/pets/{petId}/edit")
+    public String processUpdateForm(@Valid Pet pet, BindingResult result, Owner owner, Model model) {
+        if (result.hasErrors()) {
+            pet.setOwner(owner);
+            model.addAttribute("pet", pet);
+            return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+        } else {
+            owner.addPet(pet);
+            petService.save(pet);
+            return "redirect:/owners/" + owner.getId();
+        }
     }
 }
