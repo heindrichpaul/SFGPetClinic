@@ -40,7 +40,7 @@ public class Pet extends BaseEntity {
         this.owner = owner;
         this.birthDate = birthDate;
         this.visits = visits;
-        if (visits == null || visits.size() > 0) {
+        if (this.visits == null || this.visits.isEmpty()) {
             this.visits = visits;
         }
 

@@ -37,8 +37,8 @@ public class PetController {
     }
 
     @ModelAttribute("owner")
-    public Owner findOwner(@PathVariable("ownerId") int ownerId) {
-        return this.ownerService.findById((long) ownerId);
+    public Owner findOwner(@PathVariable("ownerId") Long ownerId) {
+        return this.ownerService.findById(ownerId);
     }
 
     @InitBinder("owner")
@@ -71,8 +71,8 @@ public class PetController {
 
 
     @GetMapping("/pets/{petId}/edit")
-    public String initUpdateForm(@PathVariable("petId") int petId, Model model) {
-        Pet pet = petService.findById((long) petId);
+    public String initUpdateForm(@PathVariable("petId") Long petId, Model model) {
+        Pet pet = petService.findById(petId);
         model.addAttribute("pet", pet);
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
     }
