@@ -1,9 +1,14 @@
 package com.heindrich.sfgpetclinic.controllers;
 
+import com.heindrich.sfgpetclinic.model.Vet;
 import com.heindrich.sfgpetclinic.services.VetService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Set;
 
 /**
  * Created by heindrichpaul on 11/02/2020
@@ -23,5 +28,11 @@ public class VetController {
 
         model.addAttribute("vets", vetService.findAll());
         return VIEW_VET_INDEX;
+    }
+
+    @GetMapping("/api/vets")
+    public @ResponseBody
+    Set<Vet> getVetsJSON() {
+        return vetService.findAll();
     }
 }

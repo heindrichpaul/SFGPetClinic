@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SpecialtyServiceMapTest {
 
     private final Long SPECIALTY_ID = 1L;
-    private SpecialtyServiceMap specialtyServiceMap;
+    private SpecialityMapService specialtyServiceMap;
 
     @BeforeEach
     void setUp() {
-        specialtyServiceMap = new SpecialtyServiceMap();
+        specialtyServiceMap = new SpecialityMapService();
         specialtyServiceMap.save(Speciality.builder().id(SPECIALTY_ID).build());
     }
 

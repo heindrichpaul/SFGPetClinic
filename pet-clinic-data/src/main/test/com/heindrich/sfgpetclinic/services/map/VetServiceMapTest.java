@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class VetServiceMapTest {
 
     private final Long VET_ID = 1L;
-    private VetServiceMap vetServiceMap;
+    private VetMapService vetServiceMap;
 
     @BeforeEach
     void setUp() {
-        vetServiceMap = new VetServiceMap(new SpecialtyServiceMap());
+        vetServiceMap = new VetMapService(new SpecialityMapService());
         vetServiceMap.save(Vet.builder().id(VET_ID).build());
     }
 

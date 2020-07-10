@@ -10,11 +10,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PetTypeServiceMapTest {
     private final Long PET_TYPE_ID = 1L;
-    private PetTypeServiceMap petTypeServiceMap;
+    private PetTypeMapService petTypeServiceMap;
 
     @BeforeEach
     void setUp() {
-        petTypeServiceMap = new PetTypeServiceMap();
+        petTypeServiceMap = new PetTypeMapService();
         petTypeServiceMap.save(PetType.builder().id(PET_TYPE_ID).build());
     }
 

@@ -11,12 +11,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class OwnerServiceMapTest {
     private final Long OWNER_ID = 1L;
     private final String LAST_NAME = "Doe";
-    private OwnerServiceMap ownerServiceMap;
+    private OwnerMapService ownerServiceMap;
 
 
     @BeforeEach
     void setUp() {
-        ownerServiceMap = new OwnerServiceMap(new PetServiceMap(), new PetTypeServiceMap());
+        ownerServiceMap = new OwnerMapService(new PetMapService(), new PetTypeMapService());
         ownerServiceMap.save(Owner.builder().id(OWNER_ID).lastName(LAST_NAME).build());
     }
 

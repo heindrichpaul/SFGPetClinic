@@ -13,11 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class VisitServiceMapTest {
 
     private final Long VISIT_ID = 1L;
-    private VisitServiceMap visitServiceMap;
+    private VisitMapService visitServiceMap;
 
     @BeforeEach
     void setUp() {
-        visitServiceMap = new VisitServiceMap();
+        visitServiceMap = new VisitMapService();
         visitServiceMap.save(Visit.builder().id(VISIT_ID).pet(Pet.builder().id(1L).owner(Owner.builder().id(1L).build()).build()).build());
     }
 

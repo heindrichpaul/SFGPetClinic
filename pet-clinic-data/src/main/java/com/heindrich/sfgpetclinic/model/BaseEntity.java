@@ -1,6 +1,7 @@
 package com.heindrich.sfgpetclinic.model;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,8 @@ public class BaseEntity implements Serializable {
         this.id = id;
     }
 
+    @JsonProperty
+    @JsonIgnore
     public boolean isNew() {
         return this.id == null;
     }

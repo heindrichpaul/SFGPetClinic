@@ -27,7 +27,7 @@ class OwnerServiceJpaTest {
     @Mock
     private OwnerRepository repository;
     @InjectMocks
-    private OwnerServiceJpa service;
+    private OwnerJPAService service;
 
     @BeforeEach
     void setUp() {
