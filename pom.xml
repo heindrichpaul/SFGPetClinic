@@ -27,7 +27,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <jaxb.api.version>2.3.1</jaxb.api.version>
         <jaxb.core.version>2.3.0.1</jaxb.core.version>
-        <jaxb.impl.version>2.3.3</jaxb.impl.version>
+        <jaxb.impl.version>2.3.4</jaxb.impl.version>
     </properties>
 
     <dependencies>
